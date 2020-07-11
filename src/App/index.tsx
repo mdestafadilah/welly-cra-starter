@@ -1,15 +1,19 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Loading from "../components/Loading";
-
-const Home = lazy(() => import("../pages/Home"));
+import { Login, Home } from "../pages";
+import { Loading } from "../components";
 
 export default () => (
   <Router>
     <Suspense fallback={<Loading />}>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
       </Switch>
     </Suspense>
   </Router>

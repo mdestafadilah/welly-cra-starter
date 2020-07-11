@@ -1,11 +1,22 @@
-import React, { ReactType } from "react";
-import { Route } from "react-router-dom";
+import React, { ReactNode } from "react";
+import { Route, Redirect } from "react-router-dom";
 
 interface Props {
-  component: ReactType;
+  children: ReactNode;
   [k: string]: any;
 }
 
-export default ({ component: Component, ...rest }: Props) => (
-  <Route {...rest} render={(props) => <Component {...props} />} />
+const isAuthenticated = false;
+
+export default ({ children, ...rest }: Props) => (
+  <Route
+    {...rest}
+    render={({ location }) =>
+      isAuthenticated ? (
+        children
+      ) : (
+        <Redirect to={{ pathname: "/login", state: { from: location } }} />
+      )
+    }
+  />
 );
