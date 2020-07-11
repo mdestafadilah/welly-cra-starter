@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 
 interface Props {
   component: ReactType;
-  [key: string]: any;
+  [k: string]: any;
 }
 
 export default ({ component: Component, ...rest }: Props) => (
