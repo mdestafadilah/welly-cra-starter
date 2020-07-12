@@ -5,15 +5,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "lint:code": "eslint --fix . --ext .js,.ts,.tsx",
     "lint:style": "stylelint --fix \"**/*.{css,ts,tsx}\"",
+    "test": "react-scripts test",
+    "test:cov": "yarn test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test"
+      "pre-push": "yarn test --watchAll=false"
     }
   },
   "lint-staged": {
