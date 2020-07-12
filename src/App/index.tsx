@@ -5,7 +5,7 @@ import AppProviders from "../context";
 import Routes from "../pages";
 import { Nav } from "../components";
 
-export default () => (
+export default (): JSX.Element => (
   <AppProviders>
     <Router>
       <Nav />

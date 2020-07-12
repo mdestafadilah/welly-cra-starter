@@ -1,3 +1,3 @@
 import React from "react";
 
-export default () => <div>Pages doesn't exists</div>;
+export default (): JSX.Element => <div>Pages doesn&apos;t exists</div>;

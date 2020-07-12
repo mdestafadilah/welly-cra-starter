@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default () => {
+export default (): JSX.Element | null => {
   const { pathname } = useLocation();
 
   return pathname !== "/login" ? (

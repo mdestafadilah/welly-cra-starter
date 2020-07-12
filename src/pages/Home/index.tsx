@@ -1,3 +1,3 @@
 import React from "react";
 
-export default () => <div>Home Page</div>;
+export default (): JSX.Element => <div>Home Page</div>;

@@ -7,18 +7,20 @@ import React, {
   useContext,
 } from "react";
 
+interface Val {
+  isAuthenticated: boolean;
+  user: any;
+  login: () => void;
+  logout: () => void;
+}
+
 interface Props {
   children: ReactNode;
 }
 
-const AuthContext = createContext({
-  isAuthenticated: false,
-  user: {},
-  login: () => {},
-  logout: () => {},
-});
+const AuthContext = createContext<Partial<Val>>({});
 
-const AuthProvider = ({ children }: Props) => {
+const AuthProvider = ({ children }: Props): JSX.Element => {
   const act = localStorage.getItem("act");
   const [isAuthenticated, setIsAuthenticated] = useState(!!act);
   const [user, setUser] = useState({});
@@ -29,7 +31,7 @@ const AuthProvider = ({ children }: Props) => {
     setIsAuthenticated(true);
     setUser({ name: "Welly " });
     localStorage.setItem("act", "123");
-  }, [setIsAuthenticated]);
+  }, []);
 
   const logout = useCallback(() => {
     // ...
@@ -37,7 +39,7 @@ const AuthProvider = ({ children }: Props) => {
     setIsAuthenticated(false);
     setUser({});
     localStorage.removeItem("act");
-  }, [setIsAuthenticated]);
+  }, []);
 
   const value = useMemo(() => ({ isAuthenticated, user, login, logout }), [
     isAuthenticated,
@@ -49,6 +51,6 @@ const AuthProvider = ({ children }: Props) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-const useAuth = () => useContext(AuthContext);
+const useAuth = (): Partial<Val> => useContext(AuthContext);
 
 export { AuthProvider, useAuth };

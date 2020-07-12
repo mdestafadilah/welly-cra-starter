@@ -14,13 +14,13 @@ interface Props {
   [k: string]: any;
 }
 
-const PrivateRoute = ({ children, ...rest }: Props) => {
+const PrivateRoute = ({ children, ...rest }: Props): JSX.Element => {
   const { isAuthenticated } = useAuth();
 
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={({ location }): ReactNode | JSX.Element =>
         isAuthenticated ? (
           children
         ) : (
@@ -31,7 +31,7 @@ const PrivateRoute = ({ children, ...rest }: Props) => {
   );
 };
 
-export default () => (
+export default (): JSX.Element => (
   <Suspense fallback={<Loading />}>
     <Switch>
       <Route path="/login">

@@ -6,10 +6,50 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint:code": "eslint --fix . --ext .js,.ts,.tsx",
+    "lint:style": "stylelint --fix \"**/*.{css,ts,tsx}\"",
     "eject": "react-scripts eject"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{css,ts,tsx}": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "welly"
+    ]
+  },
+  "stylelint": {
+    "plugins": [
+      "stylelint-prettier"
+    ],
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-prettier"
+    ],
+    "rules": {
+      "prettier/prettier": true
+    },
+    "ignoreFiles": [
+      "coverage/**/*.css"
+    ]
   },
   "browserslist": {
     "production": [
@@ -38,6 +78,14 @@
     "typescript": "~3.9.6"
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "eslint-config-welly": "^1.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-prettier": "^1.1.2"
   }
 }

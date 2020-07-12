@@ -1,3 +1,3 @@
 import React from "react";
 
-export default () => <div>Login Page</div>;
+export default (): JSX.Element => <div>Login Page</div>;
