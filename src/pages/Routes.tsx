@@ -1,12 +1,30 @@
-import React, { lazy, Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { ReactNode, lazy, Suspense } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
-import { Loading, PrivateRoute } from "../components";
+import { Loading } from "../components";
 
 const Login = lazy(() => import("./Login"));
 const Home = lazy(() => import("./Home"));
 const Protected = lazy(() => import("./Protected"));
 const NoMatch = lazy(() => import("./NoMatch"));
+
+interface Props {
+  children: ReactNode;
+  [k: string]: any;
+}
+
+const PrivateRoute = ({ children, ...rest }: Props) => (
+  <Route
+    {...rest}
+    render={({ location }) =>
+      false ? (
+        children
+      ) : (
+        <Redirect to={{ pathname: "/login", state: { from: location } }} />
+      )
+    }
+  />
+);
 
 export default () => (
   <Suspense fallback={<Loading />}>
