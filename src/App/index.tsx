@@ -1,11 +1,12 @@
 import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { Login, Home } from "../pages";
-import { Loading } from "../components";
+import { Login, Home, Protected, NoMatch } from "../pages";
+import { Loading, Nav, PrivateRoute } from "../components";
 
 export default () => (
   <Router>
+    <Nav />
     <Suspense fallback={<Loading />}>
       <Switch>
         <Route path="/login">
@@ -13,6 +14,12 @@ export default () => (
         </Route>
         <Route exact path="/">
           <Home />
+        </Route>
+        <PrivateRoute path="/protected">
+          <Protected />
+        </PrivateRoute>
+        <Route>
+          <NoMatch />
         </Route>
       </Switch>
     </Suspense>
