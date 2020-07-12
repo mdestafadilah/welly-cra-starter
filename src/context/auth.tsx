@@ -13,29 +13,35 @@ interface Props {
 
 const AuthContext = createContext({
   isAuthenticated: false,
+  user: {},
   login: () => {},
   logout: () => {},
 });
 
 const AuthProvider = ({ children }: Props) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    !!localStorage.getItem("act")
-  );
+  const act = localStorage.getItem("act");
+  const [isAuthenticated, setIsAuthenticated] = useState(!!act);
+  const [user, setUser] = useState({});
 
   const login = useCallback(() => {
     // ...
+
     setIsAuthenticated(true);
+    setUser({ name: "Welly " });
     localStorage.setItem("act", "123");
   }, [setIsAuthenticated]);
 
   const logout = useCallback(() => {
     // ...
+
     setIsAuthenticated(false);
+    setUser({});
     localStorage.removeItem("act");
   }, [setIsAuthenticated]);
 
-  const value = useMemo(() => ({ isAuthenticated, login, logout }), [
+  const value = useMemo(() => ({ isAuthenticated, user, login, logout }), [
     isAuthenticated,
+    user,
     login,
     logout,
   ]);
