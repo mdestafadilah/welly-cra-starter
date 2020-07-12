@@ -1,6 +1,7 @@
 import React, { ReactNode, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
+import { useAuth } from "../context/auth";
 import { Loading } from "../components";
 
 const Login = lazy(() => import("./Login"));
@@ -13,18 +14,22 @@ interface Props {
   [k: string]: any;
 }
 
-const PrivateRoute = ({ children, ...rest }: Props) => (
-  <Route
-    {...rest}
-    render={({ location }) =>
-      false ? (
-        children
-      ) : (
-        <Redirect to={{ pathname: "/login", state: { from: location } }} />
-      )
-    }
-  />
-);
+const PrivateRoute = ({ children, ...rest }: Props) => {
+  const { isAuthenticated } = useAuth();
+
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isAuthenticated ? (
+          children
+        ) : (
+          <Redirect to={{ pathname: "/login", state: { from: location } }} />
+        )
+      }
+    />
+  );
+};
 
 export default () => (
   <Suspense fallback={<Loading />}>
