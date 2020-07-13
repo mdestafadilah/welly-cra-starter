@@ -5,6 +5,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 ## Features
 
 - ⚛️ Based on [create-react-app](https://github.com/facebook/create-react-app).
+- 🧑🏻‍💻 Developing with [TypeScript](https://www.typescriptlang.org).
 - 👉🏻 Routing with [react-router](https://reactrouter.com).
 - 🗄️ Integrating [swr](https://swr.vercel.app/) and [axios](https://github.com/axios/axios) for data fetching.
 - 👩🏻‍🎤 Styling with [emotion-js](https://emotion.sh/docs/introduction).
