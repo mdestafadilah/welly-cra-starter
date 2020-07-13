@@ -1,3 +1,3 @@
 export default {
-  API_URL: "development",
+  API_URL: "https://jsonplaceholder.typicode.com",
 };
