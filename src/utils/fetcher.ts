@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import conf from "../configs";
 
 export default (url: string): any =>
