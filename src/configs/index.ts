@@ -1,6 +1,10 @@
 import defaultConf from "./default";
+import prodConf from "./prod";
 
 const env = process.env.REACT_APP_ENV || "development";
-const envConf = require(`./${env}`).default;
+const envConf: { [k: string]: any } = {
+  production: prodConf,
+  // more configurations...
+};
 
-export default { ...defaultConf, ...envConf };
+export default { ...defaultConf, ...(envConf[env] || {}) };
