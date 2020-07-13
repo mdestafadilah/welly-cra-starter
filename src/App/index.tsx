@@ -7,12 +7,14 @@ import normalize from "normalize.css";
 import AppProviders from "../context";
 import Routes from "../pages";
 import { Nav } from "../components";
+import { root } from "./styles";
 
 export default (): JSX.Element => (
   <>
     <Global
       styles={css`
         ${normalize}
+        ${root}
       `}
     />
     <AppProviders>
