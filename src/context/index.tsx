@@ -7,5 +7,8 @@ interface Props {
 }
 
 export default ({ children }: Props): JSX.Element => (
-  <AuthProvider>{children}</AuthProvider>
+  <AuthProvider>
+    {/* Other providers... */}
+    {children}
+  </AuthProvider>
 );
