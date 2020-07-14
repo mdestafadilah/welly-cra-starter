@@ -3,15 +3,13 @@ import useSWR from "swr";
 import { Typography } from "@material-ui/core";
 
 export default (): JSX.Element => {
-  const { data, error } = useSWR("/users/1");
-  let txt = "Page loading...";
-
-  if (error) txt = "Fail to load data";
-  if (data) txt = data.name;
+  const { error, data } = useSWR("/users/1", { suspense: true });
 
   return (
     <div>
-      <Typography variant="h1">{txt}</Typography>
+      <Typography variant="h1">
+        {error ? "Fail to load data" : data.name}
+      </Typography>
     </div>
   );
 };
