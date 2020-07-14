@@ -26,7 +26,7 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
   const [user, setUser] = useState({});
 
   const login = useCallback(() => {
-    // ...
+    // Do something...
 
     setIsAuthenticated(true);
     setUser({ name: "Welly " });
@@ -34,7 +34,7 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
   }, []);
 
   const logout = useCallback(() => {
-    // ...
+    // Do something...
 
     setIsAuthenticated(false);
     setUser({});
