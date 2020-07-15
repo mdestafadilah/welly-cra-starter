@@ -47,7 +47,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 │   ├── context             // React context (for global states)
 │   ├── utils               // App utilities
 │   ├── styles              // Global styles (e.g. theme, colors etc.)
-│   ├── types               // TypeScript definitions
+│   ├── types               // Global type definitions
 │   ├── assets              // Static files (e.g. images, fonts etc.)
 │   ├── index.tsx           // App entry
 │   ├── serviceWorker.js    // See: https://create-react-app.dev/docs/making-a-progressive-web-app
