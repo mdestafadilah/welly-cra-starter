@@ -32,4 +32,26 @@ A React CSR starter for my personal projects along with these [awesome features]
 
 ## App Structure
 
-Coming soon...
+```
+.
+├── .vscode                   // Google Chrome debugging configuration for VSCode
+├── public                    // See: https://create-react-app.dev/docs/using-the-public-folder
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+├── src                       // App source code
+│   ├── App                   // App root component
+│   ├── components            // UI and other components
+│   ├── pages                 // Page components
+│   ├── configs               // App configurations (by environments)
+│   ├── context               // React context (for global states)
+│   ├── utils                 // App utilities
+│   ├── styles                // Global styles (e.g. theme, colors etc.)
+│   ├── types                 // TypeScript definitions
+│   ├── assets                // Static files (e.g. images, fonts etc.)
+│   ├── index.tsx             // App entry
+│   ├── serviceWorker.js      // See: https://create-react-app.dev/docs/making-a-progressive-web-app
+│   └── setupTests.js         // Jest setup file
+├── .env                      // See: https://create-react-app.dev/docs/adding-custom-environment-variables
+└── tsconfig.json             // TypeScript configuration
+```
