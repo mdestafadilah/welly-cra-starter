@@ -1,9 +1,5 @@
 import css from "@emotion/css/macro";
 
-export const container = css`
-  flex-grow: 1;
-`;
-
 export const menuBtn = (theme: any): any => css`
   margin-right: ${theme.spacing(2)}px;
 `;
@@ -14,4 +10,8 @@ export const emoji = css`
 
 export const title = css`
   flex-grow: 1;
+`;
+
+export const select = css`
+  margin-right: 1rem;
 `;

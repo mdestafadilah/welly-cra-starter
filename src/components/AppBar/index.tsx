@@ -15,7 +15,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { useUser } from "../../context/user";
-import { container, menuBtn, emoji, title } from "./styles";
+import { menuBtn, emoji, title, select } from "./styles";
 
 export default (): JSX.Element | null => {
   const { pathname } = useLocation();
@@ -27,32 +27,35 @@ export default (): JSX.Element | null => {
   };
 
   return pathname !== "/login" ? (
-    <div css={container}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            css={menuBtn}
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography css={title} variant="h6">
-            <span css={emoji} role="img" aria-label="Hello">
-              👋🏻
-            </span>
-            Hello
-          </Typography>
-          <Select value={lang} onChange={handleLangChange} displayEmpty>
-            <MenuItem value="en">English</MenuItem>
-            <MenuItem value="zh">中文</MenuItem>
-          </Select>
-          <Button>
-            <Link to="/login">Login</Link>
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton
+          css={menuBtn}
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+        >
+          <MenuIcon />
+        </IconButton>
+        <Typography css={title} variant="h6">
+          <span css={emoji} role="img" aria-label="Hello">
+            👋🏻
+          </span>
+          Hello
+        </Typography>
+        <Select
+          css={select}
+          value={lang}
+          onChange={handleLangChange}
+          displayEmpty
+        >
+          <MenuItem value="en">English</MenuItem>
+          <MenuItem value="zh">中文</MenuItem>
+        </Select>
+        <Button>
+          <Link to="/login">Login</Link>
+        </Button>
+      </Toolbar>
+    </AppBar>
   ) : null;
 };
