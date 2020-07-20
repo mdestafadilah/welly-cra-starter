@@ -13,6 +13,7 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { FormattedMessage } from "react-intl";
 
 import { useUser } from "../../context/user";
 import { menuBtn, emoji, title, select } from "./styles";
@@ -41,7 +42,7 @@ export default (): JSX.Element | null => {
           <span css={emoji} role="img" aria-label="Hello">
             👋🏻
           </span>
-          Hello
+          <FormattedMessage id="title" values={{ name: "Welly" }} />
         </Typography>
         <Select
           css={select}
