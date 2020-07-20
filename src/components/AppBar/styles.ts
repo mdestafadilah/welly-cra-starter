@@ -1,5 +1,6 @@
 import css from "@emotion/css/macro";
 
+// FIXME: Use correct types
 export const menuBtn = (theme: any): any => css`
   margin-right: ${theme.spacing(2)}px;
 `;
