@@ -20,8 +20,8 @@ const UserContext = createContext<Partial<Val>>({});
 
 const UserProvider = ({ children }: Props): JSX.Element => {
   const savedLang = localStorage.getItem("lang");
-  const locale = navigator.languages[0].split("-")[0];
-  const [language, setLanguage] = useState(savedLang || locale || "en");
+  const browserLang = navigator.language.split("-")[0];
+  const [language, setLanguage] = useState(savedLang || browserLang || "en");
 
   const setLang = useCallback((lang: string) => {
     setLanguage(lang);
