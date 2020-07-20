@@ -10,6 +10,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 - 🗄️ Integrating [swr](https://swr.vercel.app/) and [axios](https://github.com/axios/axios) for data fetching.
 - 👩🏻‍🎤 Styling with [emotion-js](https://emotion.sh/docs/introduction).
 - 🧑🏻‍🎨 Integrating [Material-UI](https://material-ui.com).
+- 🌏 Integrating [react-intl](https://formatjs.io/docs/react-intl) to support multiple languages.
 - 👮🏻 Code quality checking with [ESlint superset](https://github.com/wellyshen/eslint-config-welly) and [Stylelint](https://stylelint.io/).
 - 👷🏻 Code formatting with [Prettier](https://prettier.io) (integrated with linters).
 
@@ -46,6 +47,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 │   ├── configs             // App configurations (by environments)
 │   ├── context             // React context (for global states)
 │   ├── utils               // App utilities
+│   ├── langs               // Multiple language files (e.g. en, fr etc.)
 │   ├── styles              // Global styles (e.g. theme, colors etc.)
 │   ├── types               // Global type definitions
 │   ├── assets              // Static files (e.g. images, fonts etc.)
