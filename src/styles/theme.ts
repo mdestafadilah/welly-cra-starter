@@ -6,6 +6,7 @@ export default createMuiTheme({
       "@global": {
         a: {
           color: "#fff",
+          textDecoration: "none",
         },
       },
     },
