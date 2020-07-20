@@ -2,10 +2,10 @@ import React from "react";
 import { SWRConfig } from "swr";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import fetcher from "../utils/fetcher";
+import { fetcher } from "../utils";
 import AppProviders from "../context";
 import Routes from "../pages";
-import { Nav } from "../components";
+import { AppBar } from "../components";
 
 export default (): JSX.Element => (
   <SWRConfig
@@ -16,7 +16,7 @@ export default (): JSX.Element => (
   >
     <AppProviders>
       <Router>
-        <Nav />
+        <AppBar />
         <Routes />
       </Router>
     </AppProviders>
