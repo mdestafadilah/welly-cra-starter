@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 
 import { AuthProvider } from "./auth";
+import { UserProvider } from "./user";
 
 interface Props {
   children: ReactNode;
@@ -8,7 +9,6 @@ interface Props {
 
 export default ({ children }: Props): JSX.Element => (
   <AuthProvider>
-    {/* Other providers... */}
-    {children}
+    <UserProvider>{children}</UserProvider>
   </AuthProvider>
 );
