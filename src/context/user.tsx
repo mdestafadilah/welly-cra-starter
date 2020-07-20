@@ -7,18 +7,18 @@ import React, {
   useContext,
 } from "react";
 
-interface Val {
+export interface ContextPros {
   lang: string;
   setLang: (lang: string) => void;
 }
 
-interface Props {
+interface ProviderProps {
   children: ReactNode;
 }
 
-const UserContext = createContext<Partial<Val>>({});
+const UserContext = createContext<Partial<ContextPros>>({});
 
-const UserProvider = ({ children }: Props): JSX.Element => {
+const UserProvider = ({ children }: ProviderProps): JSX.Element => {
   const savedLang = localStorage.getItem("lang");
   const browserLang = navigator.language.split("-")[0];
   const [language, setLanguage] = useState(savedLang || browserLang || "en");
@@ -36,6 +36,6 @@ const UserProvider = ({ children }: Props): JSX.Element => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-const useUser = (): Partial<Val> => useContext(UserContext);
+const useUser = (): Partial<ContextPros> => useContext(UserContext);
 
 export { UserProvider, useUser };

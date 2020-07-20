@@ -7,20 +7,20 @@ import React, {
   useContext,
 } from "react";
 
-interface Val {
+interface ContextPros {
   isAuthenticated: boolean;
   user: any;
   login: () => void;
   logout: () => void;
 }
 
-interface Props {
+interface ProviderProps {
   children: ReactNode;
 }
 
-const AuthContext = createContext<Partial<Val>>({});
+const AuthContext = createContext<Partial<ContextPros>>({});
 
-const AuthProvider = ({ children }: Props): JSX.Element => {
+const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   const act = localStorage.getItem("act");
   const [isAuthenticated, setIsAuthenticated] = useState(!!act);
   const [user, setUser] = useState({});
@@ -51,6 +51,6 @@ const AuthProvider = ({ children }: Props): JSX.Element => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-const useAuth = (): Partial<Val> => useContext(AuthContext);
+const useAuth = (): Partial<ContextPros> => useContext(AuthContext);
 
 export { AuthProvider, useAuth };

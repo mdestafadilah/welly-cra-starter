@@ -15,15 +15,14 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { FormattedMessage } from "react-intl";
 
-import { useUser } from "../../context/user";
+import { useUser, ContextPros } from "../../context/user";
 import { menuBtn, emoji, title, select } from "./styles";
 
 export default (): JSX.Element | null => {
   const { pathname } = useLocation();
-  const { lang, setLang } = useUser();
+  const { lang, setLang } = useUser() as ContextPros;
 
   const handleLangChange = (e: ChangeEvent<{ value: unknown }>): void => {
-    // @ts-ignore
     setLang(e.target.value as string);
   };
 

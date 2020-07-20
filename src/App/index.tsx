@@ -3,7 +3,7 @@ import { SWRConfig } from "swr";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { useUser } from "../context/user";
+import { useUser, ContextPros } from "../context/user";
 import { fetcher } from "../utils";
 import messages from "../langs";
 import Routes from "../pages";
@@ -15,7 +15,7 @@ const config = {
 };
 
 export default (): JSX.Element => {
-  const lang = useUser().lang as string;
+  const { lang } = useUser() as ContextPros;
 
   return (
     // @ts-ignore
