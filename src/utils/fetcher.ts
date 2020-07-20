@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios, { AxiosPromise } from "axios";
 
-import conf from "../configs";
+import config from "../configs";
 
-export default (url: string): any =>
-  axios(`${conf.API_URL}${url}`).then((res) => res.data);
+export default (url: string): AxiosPromise =>
+  axios(`${config.API_URL}${url}`).then((res) => res.data);
