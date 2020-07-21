@@ -39,13 +39,13 @@ jobs:
         run: yarn type-check
       - name: Run lint
         run: yarn lint
-      # - name: Run test
-      # run: yarn test:cov
+      - name: Run test
+        run: yarn test:cov
 
-      - name: Coveralls GitHub Action
-        uses: coverallsapp/github-action@v1.1.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Coveralls GitHub Action
+      #   uses: coverallsapp/github-action@v1.1.1
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
