@@ -10,7 +10,7 @@
     "lint": "run-p lint:*",
     "lint:code": "eslint --fix . --ext .js,.ts,.tsx",
     "lint:style": "stylelint --fix \"**/*.{css,ts,tsx}\"",
-    "test": "react-scripts test",
+    "test": "react-scripts test --passWithNoTests",
     "test:cov": "yarn test --coverage --watchAll=false",
     "clean": "run-p clean:*",
     "clean:build": "rimraf build",
@@ -20,7 +20,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "yarn test --watchAll=false --passWithNoTests"
+      "pre-push": "yarn test --watchAll=false"
     }
   },
   "lint-staged": {
