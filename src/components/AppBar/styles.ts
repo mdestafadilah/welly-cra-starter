@@ -12,6 +12,16 @@ export const title = css`
   flex-grow: 1;
 `;
 
-export const select = css`
-  margin-right: 1rem;
+export const select = (theme: any): SerializedStyles => css`
+  margin-right: ${theme.spacing(2)}px;
+
+  .MuiSelect-select,
+  .MuiSelect-icon {
+    color: #fff;
+  }
+
+  &::before,
+  &:hover::before {
+    border-color: #fff !important;
+  }
 `;

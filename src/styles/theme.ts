@@ -11,12 +11,4 @@ export default createMuiTheme({
       },
     },
   },
-  palette: {
-    background: {
-      default: "#000",
-    },
-    text: {
-      primary: "#fff",
-    },
-  },
 });
