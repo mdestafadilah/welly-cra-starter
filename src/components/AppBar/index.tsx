@@ -18,7 +18,11 @@ import { FormattedMessage } from "react-intl";
 import { useUser, ContextPros } from "../../context/user";
 import { menuBtn, emoji, title, select } from "./styles";
 
-export default (): JSX.Element | null => {
+interface Props {
+  onClickIcon: () => void;
+}
+
+export default ({ onClickIcon }: Props): JSX.Element | null => {
   const { pathname } = useLocation();
   const { lang, setLang } = useUser() as ContextPros;
 
@@ -34,11 +38,12 @@ export default (): JSX.Element | null => {
           edge="start"
           color="inherit"
           aria-label="menu"
+          onClick={onClickIcon}
         >
           <MenuIcon />
         </IconButton>
         <Typography css={title} variant="h6">
-          <span css={emoji} role="img" aria-label="Hello">
+          <span css={emoji} role="img" aria-label="Waving hand">
             👋🏻
           </span>
           <FormattedMessage id="title" values={{ name: "Welly" }} />
@@ -52,8 +57,8 @@ export default (): JSX.Element | null => {
           <MenuItem value="en">English</MenuItem>
           <MenuItem value="zh">中文</MenuItem>
         </Select>
-        <Button>
-          <Link to="/login">Login</Link>
+        <Button color="inherit" component={Link} to="/login">
+          Login
         </Button>
       </Toolbar>
     </AppBar>
