@@ -1,8 +1,12 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
+/** @jsx jsx */
+
+import { jsx } from "@emotion/core";
+import { Container, Typography } from "@material-ui/core";
+
+import { container } from "./styles";
 
 export default (): JSX.Element => (
-  <div>
-    <Typography variant="h1">Protected Page</Typography>
-  </div>
+  <Container css={container} maxWidth={false}>
+    <Typography variant="h6">Protected Page</Typography>
+  </Container>
 );

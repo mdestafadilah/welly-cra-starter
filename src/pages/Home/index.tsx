@@ -1,15 +1,20 @@
-import React from "react";
+/** @jsx jsx */
+
+import { jsx } from "@emotion/core";
 import useSWR from "swr";
-import { Typography } from "@material-ui/core";
+import { Container, Typography } from "@material-ui/core";
+
+import { container } from "./styles";
 
 export default (): JSX.Element => {
-  const { error, data } = useSWR("/users/1", { suspense: true });
+  const { error, data } = useSWR("/posts/1", { suspense: true });
 
   return (
-    <div>
-      <Typography variant="h1">
-        {error ? "Fail to load data" : data.name}
+    <Container maxWidth={false} css={container}>
+      <Typography variant="h6">
+        {error ? "Fail to load data" : data.title}
       </Typography>
-    </div>
+      {!error && <Typography>{data.body}</Typography>}
+    </Container>
   );
 };
