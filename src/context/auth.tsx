@@ -7,11 +7,14 @@ import React, {
   useContext,
 } from "react";
 
-interface ContextPros {
+interface Fn {
+  (cb: () => void): void;
+}
+
+export interface ContextPros {
   isAuthenticated: boolean;
-  user: any;
-  login: () => void;
-  logout: () => void;
+  login: Fn;
+  logout: Fn;
 }
 
 interface ProviderProps {
@@ -23,27 +26,25 @@ const AuthContext = createContext<Partial<ContextPros>>({});
 const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   const act = localStorage.getItem("act");
   const [isAuthenticated, setIsAuthenticated] = useState(!!act);
-  const [user, setUser] = useState({});
 
-  const login = useCallback(() => {
-    // Do something...
-
+  const login = useCallback((cb) => {
     setIsAuthenticated(true);
-    setUser({ name: "Welly " });
     localStorage.setItem("act", "123");
+
+    if (cb) cb();
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = useCallback((cb) => {
     // Do something...
 
     setIsAuthenticated(false);
-    setUser({});
     localStorage.removeItem("act");
+
+    if (cb) cb();
   }, []);
 
-  const value = useMemo(() => ({ isAuthenticated, user, login, logout }), [
+  const value = useMemo(() => ({ isAuthenticated, login, logout }), [
     isAuthenticated,
-    user,
     login,
     logout,
   ]);

@@ -8,6 +8,7 @@ import React, {
 } from "react";
 
 export interface ContextPros {
+  name: string;
   lang: string;
   setLang: (lang: string) => void;
 }
@@ -28,7 +29,7 @@ const UserProvider = ({ children }: ProviderProps): JSX.Element => {
     localStorage.setItem("lang", lang);
   }, []);
 
-  const value = useMemo(() => ({ lang: language, setLang }), [
+  const value = useMemo(() => ({ name: "Welly", lang: language, setLang }), [
     language,
     setLang,
   ]);
