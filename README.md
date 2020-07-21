@@ -2,6 +2,10 @@
 
 A React CSR starter for my personal projects along with these [awesome features](#features).
 
+<img width="776" alt="demo" src="https://user-images.githubusercontent.com/21308003/88076666-ee3cd900-cbac-11ea-8674-c8aaf967cd18.png">
+
+⚡️ Try yourself: https://welly-cra-starter.netlify.app
+
 ## Features
 
 - ⚛️ Based on [create-react-app](https://github.com/facebook/create-react-app).
