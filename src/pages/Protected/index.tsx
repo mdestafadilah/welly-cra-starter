@@ -7,6 +7,6 @@ import { container } from "./styles";
 
 export default (): JSX.Element => (
   <Container css={container} maxWidth={false}>
-    <Typography variant="h6">Protected Page</Typography>
+    <Typography variant="h6">This is protected page</Typography>
   </Container>
 );

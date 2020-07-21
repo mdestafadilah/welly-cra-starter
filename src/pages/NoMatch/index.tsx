@@ -7,6 +7,6 @@ import { container } from "./styles";
 
 export default (): JSX.Element => (
   <Container css={container} maxWidth={false}>
-    <Typography variant="h6">Pages doesn&apos;t exists</Typography>
+    <Typography variant="h6">Pages doesn&apos;t exist</Typography>
   </Container>
 );
