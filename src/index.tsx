@@ -1,24 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider } from "emotion-theming";
 
 import AppProviders from "./context";
+import { ThemeProviders } from "./styles";
 import App from "./App";
-import theme from "./styles/theme";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <AppProviders>
-          <CssBaseline />
-          <App />
-        </AppProviders>
-      </ThemeProvider>
-    </MuiThemeProvider>
+    <AppProviders>
+      <ThemeProviders>
+        <App />
+      </ThemeProviders>
+    </AppProviders>
   </React.StrictMode>,
   document.getElementById("root")
 );
