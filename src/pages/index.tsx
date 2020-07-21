@@ -1,8 +1,8 @@
 import React, { ReactNode, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { useAuth } from "../context/auth";
+import { Loading } from "../components";
 
 const Login = lazy(() => import("./Login"));
 const Home = lazy(() => import("./Home"));
@@ -32,7 +32,7 @@ const PrivateRoute = ({ children, ...rest }: Props): JSX.Element => {
 };
 
 export default (): JSX.Element => (
-  <Suspense fallback={<CircularProgress />}>
+  <Suspense fallback={<Loading />}>
     <Switch>
       <Route path="/login">
         <Login />
