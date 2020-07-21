@@ -7,13 +7,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AppProviders>
-      <ThemeProviders>
-        <App />
-      </ThemeProviders>
-    </AppProviders>
-  </React.StrictMode>,
+  <AppProviders>
+    <ThemeProviders>
+      <App />
+    </ThemeProviders>
+  </AppProviders>,
   document.getElementById("root")
 );
 
