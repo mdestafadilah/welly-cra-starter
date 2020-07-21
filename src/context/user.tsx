@@ -7,6 +7,8 @@ import React, {
   useContext,
 } from "react";
 
+import config from "../configs";
+
 export interface ContextPros {
   name: string;
   lang: string;
@@ -22,7 +24,9 @@ const UserContext = createContext<Partial<ContextPros>>({});
 const UserProvider = ({ children }: ProviderProps): JSX.Element => {
   const savedLang = localStorage.getItem("lang");
   const browserLang = navigator.language.split("-")[0];
-  const [language, setLanguage] = useState(savedLang || browserLang || "en");
+  const [language, setLanguage] = useState(
+    savedLang || browserLang || config.DEFAULT_LANG
+  );
 
   const setLang = useCallback((lang: string) => {
     setLanguage(lang);
