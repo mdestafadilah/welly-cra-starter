@@ -4,17 +4,32 @@ import { jsx } from "@emotion/core";
 import useSWR from "swr";
 import { Container, Typography } from "@material-ui/core";
 
-import { container } from "./styles";
+import { container, post } from "./styles";
+
+interface Data {
+  id: number;
+  title: string;
+  body: string;
+}
 
 export default (): JSX.Element => {
-  const { error, data } = useSWR("/posts/1", { suspense: true });
+  const { error, data } = useSWR("/posts", { suspense: true });
+
+  const renderPosts = (): JSX.Element[] =>
+    data.map(({ id, title, body }: Data) => (
+      <div key={id} css={post}>
+        <Typography variant="h6">{title}</Typography>
+        <Typography>{body}</Typography>
+      </div>
+    ));
 
   return (
     <Container maxWidth={false} css={container}>
-      <Typography variant="h6">
-        {error ? "Fail to load data" : data.title}
-      </Typography>
-      {!error && <Typography>{data.body}</Typography>}
+      {error ? (
+        <Typography variant="h6">Oops! Fail to load posts.</Typography>
+      ) : (
+        renderPosts()
+      )}
     </Container>
   );
 };
