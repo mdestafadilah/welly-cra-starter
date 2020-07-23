@@ -7,7 +7,7 @@ import React, {
   useContext,
 } from "react";
 
-import config from "../configs";
+import config from "../config";
 
 export interface ContextPros {
   name: string;
