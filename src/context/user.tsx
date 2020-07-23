@@ -23,7 +23,7 @@ const UserContext = createContext<Partial<ContextPros>>({});
 
 const UserProvider = ({ children }: ProviderProps): JSX.Element => {
   const savedLang = localStorage.getItem("lang");
-  const browserLang = navigator.language.split("-")[0];
+  const [browserLang] = navigator.language.split("-");
   const [language, setLanguage] = useState(
     savedLang || browserLang || config.DEFAULT_LANG
   );
