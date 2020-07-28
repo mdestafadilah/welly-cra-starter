@@ -46,7 +46,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 │   └── manifest.json
 ├── src                     // App source code
 │   ├── App                 // App root component
-│   ├── components          // UI and other components
+│   ├── components          // Reusable components
 │   ├── pages               // Page components
 │   ├── config              // App configuration (by environments)
 │   ├── context             // React context (for global states)
