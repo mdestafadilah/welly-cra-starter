@@ -1,4 +1,4 @@
-import css, { SerializedStyles } from "@emotion/css/macro";
+import { css, SerializedStyles } from "@emotion/core";
 
 export const menuBtn = (theme: any): SerializedStyles => css`
   margin-right: ${theme.spacing(2)}px;

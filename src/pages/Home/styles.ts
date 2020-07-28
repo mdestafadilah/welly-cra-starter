@@ -1,4 +1,4 @@
-import css from "@emotion/css/macro";
+import { css } from "@emotion/core";
 
 export const container = css`
   margin-top: 2rem;
