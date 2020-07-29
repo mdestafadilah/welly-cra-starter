@@ -61,3 +61,20 @@ A React CSR starter for my personal projects along with these [awesome features]
 ├── .env                    // See: https://create-react-app.dev/docs/adding-custom-environment-variables
 └── tsconfig.json           // TypeScript configuration
 ```
+
+## Setup App Configuration by Environment
+
+We can setup the configuration based on the `development`, `testing` and `production`. The project uses the [base](https://github.com/wellyshen/welly-cra-starter/blob/master/src/config/base.ts) for the `development` and it's also the default configuration.
+
+```js
+// Use the base configuration by default
+yarn build
+// or
+REACT_APP_ENV=dev yarn build
+
+// Use the testing configuration
+REACT_APP_ENV=test yarn build
+
+// Use the production configuration
+REACT_APP_ENV=prod yarn build
+```
