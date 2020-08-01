@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { useUser, ContextPros } from "../context/user";
 import { fetcher } from "../utils";
 import messages from "../langs";
-import Routes from "../pages";
+import Routes from "../routes";
 import { AppBar, Drawer } from "../components";
 
 const config = {

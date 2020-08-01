@@ -48,6 +48,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 │   ├── App                 // App root component
 │   ├── components          // Reusable components
 │   ├── pages               // Page components
+│   ├── routes              // App routes and configuration
 │   ├── config              // App configuration (by environments)
 │   ├── context             // React context (for global states)
 │   ├── utils               // App utilities
