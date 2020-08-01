@@ -79,3 +79,49 @@ REACT_APP_ENV=test yarn build
 // Use the production configuration
 REACT_APP_ENV=prod yarn build
 ```
+
+## Adding New Pages
+
+This starter integrates the [Route Config](https://reactrouter.com/web/example/route-config) and [Redirects (Auth)](https://reactrouter.com/web/example/auth-workflow) for you to handle routes without struggle. You can add new a page via the `./src/routes/config.ts` as below:
+
+```js
+import { lazy } from "react";
+
+// Use lazy load pages for better performance
+const Login = lazy(() => import("../pages/Login"));
+const Home = lazy(() => import("../pages/Home"));
+const ProtectedOne = lazy(() => import("../pages/ProtectedOne"));
+const ProtectedTwo = lazy(() => import("../pages/ProtectedTwo"));
+const NoMatch = lazy(() => import("../pages/NoMatch"));
+
+const routeConfig = {
+  // You can use global redirect URL for all private routes instead
+  // redirect: "/login",
+  routes: [
+    {
+      path: "/login",
+      component: Login,
+    },
+    {
+      path: "/",
+      exact: true,
+      component: Home,
+    },
+    {
+      isPrivate: true,
+      path: "/protected-one",
+      redirect: "/login",
+      component: ProtectedOne,
+    },
+    {
+      isPrivate: true,
+      path: "/protected-two",
+      redirect: "/login",
+      component: ProtectedTwo,
+    },
+    {
+      component: NoMatch,
+    },
+  ],
+};
+```

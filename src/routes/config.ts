@@ -17,10 +17,8 @@ interface RouteConfig {
   routes: Route[];
 }
 
-// Setup your routes
+// Setup your routes here
 const routeConfig: RouteConfig = {
-  // Global redirect URL for private routes
-  // redirect: "/login",
   routes: [
     {
       path: "/login",
@@ -33,8 +31,8 @@ const routeConfig: RouteConfig = {
     },
     {
       isPrivate: true,
-      redirect: "/login",
       path: "/protected",
+      redirect: "/login",
       component: Protected,
     },
     {
