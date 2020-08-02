@@ -87,7 +87,7 @@ This starter integrates the [Route Config](https://reactrouter.com/web/example/r
 ```js
 import { lazy } from "react";
 
-// Use lazy load pages for better performance
+// Code-splitting pages for performance optimization
 const Login = lazy(() => import("../pages/Login"));
 const Home = lazy(() => import("../pages/Home"));
 const Protected = lazy(() => import("../pages/Protected"));
