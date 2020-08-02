@@ -149,7 +149,7 @@ import { Routes } from "../../routes";
 
 const TopPage = ({ routes }) => (
   <div className="container">
-    {/* Render the nested page */}
+    {/* Render the nested routes */}
     <Routes routes={routes} />
   </div>
 );
