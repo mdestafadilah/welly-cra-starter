@@ -9,36 +9,29 @@ const NoMatch = lazy(() => import("../pages/NoMatch"));
 export interface Route extends RouteProps {
   isPrivate?: boolean;
   redirect?: string;
-  routes?: RouteProps[];
-}
-
-interface RouteConfig {
-  redirect?: string;
-  routes: Route[];
+  routes?: Route[];
 }
 
 // Setup your routes here
-const routeConfig: RouteConfig = {
-  routes: [
-    {
-      path: "/login",
-      component: Login,
-    },
-    {
-      path: "/",
-      exact: true,
-      component: Home,
-    },
-    {
-      isPrivate: true,
-      path: "/protected",
-      redirect: "/login",
-      component: Protected,
-    },
-    {
-      component: NoMatch,
-    },
-  ],
-};
+const routes: Route[] = [
+  {
+    path: "/login",
+    component: Login,
+  },
+  {
+    path: "/",
+    exact: true,
+    component: Home,
+  },
+  {
+    isPrivate: true,
+    redirect: "/login",
+    path: "/protected",
+    component: Protected,
+  },
+  {
+    component: NoMatch,
+  },
+];
 
-export default routeConfig;
+export default routes;

@@ -90,38 +90,72 @@ import { lazy } from "react";
 // Use lazy load pages for better performance
 const Login = lazy(() => import("../pages/Login"));
 const Home = lazy(() => import("../pages/Home"));
-const ProtectedOne = lazy(() => import("../pages/ProtectedOne"));
-const ProtectedTwo = lazy(() => import("../pages/ProtectedTwo"));
+const Protected = lazy(() => import("../pages/Protected"));
 const NoMatch = lazy(() => import("../pages/NoMatch"));
 
-const routeConfig = {
-  // You can use global redirect URL for all private routes instead
-  // redirect: "/login",
-  routes: [
-    {
-      path: "/login",
-      component: Login,
-    },
-    {
-      path: "/",
-      exact: true,
-      component: Home,
-    },
-    {
-      isPrivate: true,
-      path: "/protected-one",
-      redirect: "/login",
-      component: ProtectedOne,
-    },
-    {
-      isPrivate: true,
-      path: "/protected-two",
-      redirect: "/login",
-      component: ProtectedTwo,
-    },
-    {
-      component: NoMatch,
-    },
-  ],
-};
+const routes = [
+  {
+    path: "/login",
+    component: Login,
+  },
+  {
+    path: "/",
+    exact: true,
+    component: Home,
+  },
+  {
+    isPrivate: true,
+    redirect: "/login",
+    path: "/protected",
+    component: Protected,
+  },
+  {
+    component: NoMatch,
+  },
+];
+```
+
+We can add nested pages by reusing the pattern that we already built.
+
+```js
+// Routes config
+import { lazy } from "react";
+
+const TopPage = lazy(() => import("../pages/TopPage"));
+const SubPage = lazy(() => import("../pages/SubPage"));
+const NoMatch = lazy(() => import("../pages/NoMatch"));
+
+const routes = [
+  {
+    path: "/top-page",
+    component: TopPage,
+    // Setup the nested page
+    routes: [
+      {
+        path: "/top-page/sub-page",
+        component: SubPage,
+      },
+    ],
+  },
+  {
+    component: NoMatch,
+  },
+];
+
+// TopPage component
+import React from "react";
+import { Switch } from "react-router-dom";
+
+import { RouteWithSubRoutes } from "../../routes";
+
+const TopPage = ({ routes }) => (
+  <div className="container">
+    {/* Render the nested page */}
+    <Switch>
+      {routes.map((route, i) => (
+        <RouteWithSubRoutes key={i} {...route} />
+      ))}
+    </Switch>
+  </div>
+);
 ```
