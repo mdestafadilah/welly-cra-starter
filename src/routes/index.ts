@@ -1,6 +1,8 @@
 import { lazy } from "react";
 import { RouteProps } from "react-router-dom";
 
+import Routes from "./Routes";
+
 const Login = lazy(() => import("../pages/Login"));
 const Home = lazy(() => import("../pages/Home"));
 const Protected = lazy(() => import("../pages/Protected"));
@@ -34,4 +36,4 @@ const routes: Route[] = [
   },
 ];
 
-export default routes;
+export { Routes, routes };

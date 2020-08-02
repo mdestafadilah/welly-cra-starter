@@ -82,7 +82,7 @@ REACT_APP_ENV=prod yarn build
 
 ## Adding New Pages
 
-This starter integrates the [Route Config](https://reactrouter.com/web/example/route-config) and [Redirects (Auth)](https://reactrouter.com/web/example/auth-workflow) for you to handle routes without struggle. You can add new a page via the `./src/routes/config.ts` as below:
+This starter integrates the [Route Config](https://reactrouter.com/web/example/route-config) and [Redirects (Auth)](https://reactrouter.com/web/example/auth-workflow) for you to handle routes without struggle. You can add new a page via the `./src/routes/index.ts` as below:
 
 ```js
 import { lazy } from "react";
@@ -144,18 +144,13 @@ const routes = [
 
 // TopPage component
 import React from "react";
-import { Switch } from "react-router-dom";
 
-import { RouteWithSubRoutes } from "../../routes";
+import { Routes } from "../../routes";
 
 const TopPage = ({ routes }) => (
   <div className="container">
     {/* Render the nested page */}
-    <Switch>
-      {routes.map((route, i) => (
-        <RouteWithSubRoutes key={i} {...route} />
-      ))}
-    </Switch>
+    <Routes routes={routes} />
   </div>
 );
 ```

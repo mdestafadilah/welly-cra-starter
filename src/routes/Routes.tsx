@@ -1,11 +1,10 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import { useAuth } from "../context/auth";
-import { Loading } from "../components";
-import routes, { Route as RouteProps } from "./config";
+import { Route as RouteProps } from ".";
 
-export const RouteWithSubRoutes = ({
+const RouteWithSubRoutes = ({
   isPrivate,
   redirect,
   path,
@@ -34,13 +33,10 @@ export const RouteWithSubRoutes = ({
   );
 };
 
-export default (): JSX.Element => (
-  <Suspense fallback={<Loading />}>
-    <Switch>
-      {routes.map((route, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <RouteWithSubRoutes key={i} {...route} />
-      ))}
-    </Switch>
-  </Suspense>
+export default ({ routes }: RouteProps): JSX.Element => (
+  <Switch>
+    {routes?.map((route, i) => (
+      <RouteWithSubRoutes key={i} {...route} />
+    ))}
+  </Switch>
 );
