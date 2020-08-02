@@ -115,7 +115,7 @@ const routes = [
 ];
 ```
 
-We can add nested pages by reusing the pattern that we already built.
+For nested pages, just reuse the pattern that we already built.
 
 ```js
 // Routes config
