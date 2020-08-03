@@ -8,7 +8,7 @@ import React, {
 } from "react";
 
 interface Fn {
-  (cb: () => void): void;
+  (cb?: () => void): void;
 }
 
 export interface ContextPros {
