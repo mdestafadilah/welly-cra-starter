@@ -24,12 +24,13 @@ interface ProviderProps {
 const AuthContext = createContext<Partial<ContextPros>>({});
 
 const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
-  const act = localStorage.getItem("act");
-  const [isAuthenticated, setIsAuthenticated] = useState(!!act);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!getToken());
 
   const login = useCallback((cb) => {
+    // Do something...
+
     setIsAuthenticated(true);
-    localStorage.setItem("act", "123");
+    setToken("123");
 
     if (cb) cb();
   }, []);
@@ -38,7 +39,7 @@ const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
     // Do something...
 
     setIsAuthenticated(false);
-    localStorage.removeItem("act");
+    removeToken();
 
     if (cb) cb();
   }, []);
@@ -54,4 +55,9 @@ const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
 
 const useAuth = (): Partial<ContextPros> => useContext(AuthContext);
 
-export { AuthProvider, useAuth };
+const KEY = "act";
+const getToken = (): string | null => localStorage.getItem(KEY);
+const setToken = (val: string): void => localStorage.setItem(KEY, val);
+const removeToken = (): void => localStorage.removeItem(KEY);
+
+export { AuthProvider, useAuth, getToken };
