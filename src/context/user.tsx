@@ -9,7 +9,7 @@ import React, {
 
 import config from "../config";
 
-export interface ContextPros {
+export interface ContextProps {
   name: string;
   lang: string;
   setLang: (lang: string) => void;
@@ -19,7 +19,7 @@ interface ProviderProps {
   children: ReactNode;
 }
 
-const UserContext = createContext<Partial<ContextPros>>({});
+const UserContext = createContext<Partial<ContextProps>>({});
 
 const UserProvider = ({ children }: ProviderProps): JSX.Element => {
   const savedLang = localStorage.getItem("lang");
@@ -41,6 +41,6 @@ const UserProvider = ({ children }: ProviderProps): JSX.Element => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-const useUser = (): Partial<ContextPros> => useContext(UserContext);
+const useUser = (): Partial<ContextProps> => useContext(UserContext);
 
 export { UserProvider, useUser };

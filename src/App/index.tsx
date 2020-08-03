@@ -3,7 +3,7 @@ import { SWRConfig } from "swr";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { useUser, ContextPros } from "../context/user";
+import { useUser, ContextProps } from "../context/user";
 import { fetcher } from "../utils";
 import messages from "../langs";
 import { Routes, routes } from "../routes";
@@ -15,7 +15,7 @@ const config = {
 };
 
 export default (): JSX.Element => {
-  const { lang } = useUser() as ContextPros;
+  const { lang } = useUser() as ContextProps;
   const [showDrawer, setShowDrawer] = useState(false);
 
   const toggleDrawer = (val: boolean) => (): void => {

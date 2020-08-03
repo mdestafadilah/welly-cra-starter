@@ -11,7 +11,7 @@ interface Fn {
   (cb?: () => void): void;
 }
 
-export interface ContextPros {
+export interface ContextProps {
   isAuthenticated: boolean;
   login: Fn;
   logout: Fn;
@@ -21,7 +21,7 @@ interface ProviderProps {
   children: ReactNode;
 }
 
-const AuthContext = createContext<Partial<ContextPros>>({});
+const AuthContext = createContext<Partial<ContextProps>>({});
 
 const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!getToken());
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-const useAuth = (): Partial<ContextPros> => useContext(AuthContext);
+const useAuth = (): Partial<ContextProps> => useContext(AuthContext);
 
 const KEY = "act";
 const getToken = (): string | null => localStorage.getItem(KEY);

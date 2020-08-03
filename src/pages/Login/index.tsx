@@ -4,7 +4,7 @@ import { jsx } from "@emotion/core";
 import { useHistory, useLocation, Link, Redirect } from "react-router-dom";
 import { Container, Typography, Button } from "@material-ui/core";
 
-import { useAuth, ContextPros } from "../../context/auth";
+import { useAuth, ContextProps } from "../../context/auth";
 import { container, btn } from "./styles";
 
 interface LocationState {
@@ -16,7 +16,7 @@ interface LocationState {
 export default (): JSX.Element => {
   const history = useHistory();
   const location = useLocation<LocationState>();
-  const { isAuthenticated, login } = useAuth() as ContextPros;
+  const { isAuthenticated, login } = useAuth() as ContextProps;
 
   const handleLogin = (): void => {
     login(() => {
