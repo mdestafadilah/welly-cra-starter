@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import AppProviders from "./context";
-import { ThemeProviders } from "./styles";
+import ThemeProviders from "./styles";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 

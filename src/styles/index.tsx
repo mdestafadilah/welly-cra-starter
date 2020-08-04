@@ -9,7 +9,7 @@ interface Props {
   children: ReactNode;
 }
 
-const ThemeProviders = ({ children }: Props): JSX.Element => (
+export default ({ children }: Props): JSX.Element => (
   <MuiThemeProvider theme={theme}>
     <EmoThemeProvider theme={theme}>
       <CssBaseline />
@@ -17,6 +17,3 @@ const ThemeProviders = ({ children }: Props): JSX.Element => (
     </EmoThemeProvider>
   </MuiThemeProvider>
 );
-
-// eslint-disable-next-line import/prefer-default-export
-export { ThemeProviders };
