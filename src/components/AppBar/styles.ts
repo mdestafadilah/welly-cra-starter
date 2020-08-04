@@ -1,7 +1,8 @@
+import { Theme } from "@material-ui/core/styles";
 import { css, SerializedStyles } from "@emotion/core";
 
-export const menuBtn = (theme: any): SerializedStyles => css`
-  margin-right: ${theme.spacing(2)}px;
+export const menuBtn = ({ spacing }: Theme): SerializedStyles => css`
+  margin-right: ${spacing(2)}px;
 `;
 
 export const emoji = css`
@@ -12,8 +13,8 @@ export const title = css`
   flex-grow: 1;
 `;
 
-export const select = (theme: any): SerializedStyles => css`
-  margin-right: ${theme.spacing(2)}px;
+export const select = ({ spacing }: Theme): SerializedStyles => css`
+  margin-right: ${spacing(2)}px;
 
   .MuiSelect-select,
   .MuiSelect-icon {
