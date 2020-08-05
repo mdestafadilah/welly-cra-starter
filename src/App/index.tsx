@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { useState } from "react";
 import { SWRConfig } from "swr";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -7,7 +7,7 @@ import { useUser, ContextProps } from "../context/user";
 import { fetcher } from "../utils";
 import messages from "../langs";
 import { Routes, routes } from "../routes";
-import { AppBar, Drawer, Loading } from "../components";
+import { AppBar, Drawer } from "../components";
 
 const config = {
   refreshInterval: 3000,
@@ -29,9 +29,7 @@ export default (): JSX.Element => {
         <Router>
           <AppBar onClickIcon={toggleDrawer(true)} />
           <Drawer open={showDrawer} onClose={toggleDrawer(false)} />
-          <Suspense fallback={<Loading />}>
-            <Routes routes={routes} />
-          </Suspense>
+          <Routes routes={routes} />
         </Router>
       </SWRConfig>
     </IntlProvider>

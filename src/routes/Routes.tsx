@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import { useAuth } from "../context/auth";
 import { Route as RouteProps } from ".";
+import { Loading } from "../components";
 
 const RouteWithSubRoutes = ({
   isPrivate,
@@ -34,9 +35,11 @@ const RouteWithSubRoutes = ({
 };
 
 export default ({ routes }: RouteProps): JSX.Element => (
-  <Switch>
-    {routes?.map((route, i) => (
-      <RouteWithSubRoutes key={i} {...route} />
-    ))}
-  </Switch>
+  <Suspense fallback={<Loading />}>
+    <Switch>
+      {routes?.map((route, i) => (
+        <RouteWithSubRoutes key={i} {...route} />
+      ))}
+    </Switch>
+  </Suspense>
 );
