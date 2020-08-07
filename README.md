@@ -63,6 +63,14 @@ A React CSR starter for my personal projects along with these [awesome features]
 └── tsconfig.json           // TypeScript configuration
 ```
 
+## Performance Guide
+
+- Lazy load (a.k.a code-splitting) **heavy component** by [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy).
+- Prevent unnecessary re-rendering by [React.memo](https://reactjs.org/docs/react-api.html#reactmemo).
+- Memorize **heavy computing** by [useCallback](https://reactjs.org/docs/hooks-reference.html#usecallback) or [useMemo](https://reactjs.org/docs/hooks-reference.html#usememo) hooks.
+
+> 💡 See the [Performance Optimization](https://reactjs.org/docs/hooks-faq.html#performance-optimizations) doc to learn more.
+
 ## Setup App Configuration by Environment
 
 We can setup the configuration based on the `development`, `testing` and `production`. The project uses the [base](https://github.com/wellyshen/welly-cra-starter/blob/master/src/config/base.ts) for the `development` and it's also the default configuration.

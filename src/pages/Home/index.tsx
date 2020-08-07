@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from "@emotion/core";
+import { memo } from "react";
 import useSWR from "swr";
 import { Container, Typography } from "@material-ui/core";
 
@@ -12,7 +13,7 @@ interface Data {
   body: string;
 }
 
-export default (): JSX.Element => {
+const Home = (): JSX.Element => {
   const { error, data } = useSWR("/posts", { suspense: true });
 
   const renderPosts = (): JSX.Element[] =>
@@ -33,3 +34,5 @@ export default (): JSX.Element => {
     </Container>
   );
 };
+
+export default memo(Home);

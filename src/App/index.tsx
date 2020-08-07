@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { SWRConfig } from "swr";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -14,7 +14,7 @@ const config = {
   fetcher,
 };
 
-export default (): JSX.Element => {
+const App = (): JSX.Element => {
   const { lang } = useUser() as ContextProps;
   const [showDrawer, setShowDrawer] = useState(false);
 
@@ -35,3 +35,5 @@ export default (): JSX.Element => {
     </IntlProvider>
   );
 };
+
+export default memo(App);

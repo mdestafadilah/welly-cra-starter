@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
 import { jsx } from "@emotion/core";
+import { memo } from "react";
 import { useHistory, useLocation, Link, Redirect } from "react-router-dom";
 import { Container, Typography, Button } from "@material-ui/core";
 
@@ -13,7 +14,7 @@ interface LocationState {
   };
 }
 
-export default (): JSX.Element => {
+const Login = (): JSX.Element => {
   const history = useHistory();
   const location = useLocation<LocationState>();
   const { isAuthenticated, login } = useAuth() as ContextProps;
@@ -50,3 +51,5 @@ export default (): JSX.Element => {
     <Redirect to="/" />
   );
 };
+
+export default memo(Login);
