@@ -6,17 +6,17 @@ A React CSR starter for my personal projects along with these [awesome features]
 
 ⚡️ Try yourself: https://welly-cra-starter.netlify.app
 
-## Features
+## Tech Stack
 
-- ⚛️ Based on [create-react-app](https://github.com/facebook/create-react-app).
-- 🧑🏻‍💻 Developing with [TypeScript](https://www.typescriptlang.org).
-- 🚏 Routing with [react-router](https://reactrouter.com).
-- 🗄️ Integrating [swr](https://swr.vercel.app/) and [axios](https://github.com/axios/axios) for data fetching.
-- 👩🏻‍🎤 Styling with [emotion-js](https://emotion.sh/docs/introduction).
-- 🧑🏻‍🎨 Integrating [Material-UI](https://material-ui.com).
-- 🌏 Integrating [react-intl](https://formatjs.io/docs/react-intl) to support multiple languages.
-- 👮🏻 Code quality checking with [ESlint superset](https://github.com/wellyshen/eslint-config-welly) and [Stylelint](https://stylelint.io/).
-- 👷🏻 Code formatting with [Prettier](https://prettier.io) (integrated with linters).
+- Based on [create-react-app](https://github.com/facebook/create-react-app).
+- Developing with [TypeScript](https://www.typescriptlang.org).
+- Routing with [react-router](https://reactrouter.com).
+- Integrating [swr](https://swr.vercel.app/) and [axios](https://github.com/axios/axios) to handle API data.
+- Styling with [emotion-js](https://emotion.sh/docs/introduction).
+- Integrating [Material-UI](https://material-ui.com).
+- Integrating [react-intl](https://formatjs.io/docs/react-intl) to support internationalization (i18n).
+- Code quality checking with [ESlint superset](https://github.com/wellyshen/eslint-config-welly) and [Stylelint](https://stylelint.io/).
+- Code formatting with [Prettier](https://prettier.io) (integrated with linters).
 
 ## Script Commands
 
