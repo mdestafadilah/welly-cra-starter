@@ -51,8 +51,9 @@ A React CSR starter for my personal projects along with these [awesome features]
 │   ├── routes              // Routes configuration and component
 │   ├── config              // App configuration (by environments)
 │   ├── context             // React context (for global states)
-│   ├── utils               // App utilities
-│   ├── langs               // Multiple language files (e.g. en, fr etc.)
+│   ├── hooks               // Custom hooks
+│   ├── utils               // App utility functions
+│   ├── langs               // Language files of react-intl (e.g. en, fr etc.)
 │   ├── styles              // Global styles (e.g. theme, colors etc.)
 │   ├── types               // Global type definitions
 │   ├── assets              // Static files (e.g. images, fonts etc.)
@@ -153,7 +154,7 @@ const routes = [
 // TopPage component
 import React from "react";
 
-import { Routes } from "../../routes";
+import { Routes } from "./routes";
 
 const TopPage = ({ routes }) => (
   <div className="container">
@@ -162,3 +163,105 @@ const TopPage = ({ routes }) => (
   </div>
 );
 ```
+
+## Handling API Data
+
+### Fetching Data
+
+The `useAuthSWR` hook integrates [swr](https://swr.vercel.app) and [axios](https://github.com/axios/axios) to handle the **auth-token** and **auth error handling** for you. Just use it as [normal](https://github.com/vercel/swr#api), it will automatically logout user when the token is invalid.
+
+```js
+import React from "react";
+
+import useAuthSWR from "../hooks/useAuthSWR";
+
+const App = () => {
+  // It has the same API plus some useful options
+  // If auth-token is invalid, it will redirect user to login page automatically
+  const { data, error } = useAuthSWR("/api/foo", {
+    disableAuthErrorHandling: true, // Disable internal auth error handling, default = false
+  });
+
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
+
+  return <div>hello {data.name}!</div>;
+};
+```
+
+### Posting Data
+
+The `useAuthSWR` hook also exports the `fetcher` (based on [axios](https://github.com/axios/axios)), which includes the **API entry point** and **auth-token** already.
+
+```js
+import React from "react";
+
+import useAuthSWR, { authFetcher } from "../hooks/useAuthSWR";
+
+const App = () => {
+  const url = "/api/foo";
+  const { data, mutate } = useAuthSWR(url);
+
+  const handleSubmit = async () => {
+    try {
+      const newName = "Welly";
+      const config = {
+        method: "post",
+        data: {
+          name: newName,
+        },
+      };
+
+      await authFetcher(url, config);
+      // Update the local data immediately and revalidate (refetch)
+      mutate(url, { ...data, name: newName });
+    } catch (error) {
+      // Error handling
+    }
+  };
+
+  // ...
+};
+```
+
+- `url` - API route name.
+- `config` - The same with [axios config](https://github.com/axios/axios#request-config).
+
+## Utils
+
+### Date-time Format
+
+Format date and time via the [Date Formatting APIs](https://formatjs.io/docs/react-intl/api/#date-formatting-apis) of react-intl.
+
+```js
+import React from "react";
+import { useIntl } from "react-intl";
+
+import dateTimeFormat from "../utils/dateTimeFormat";
+
+const App = () => {
+  const intl = useIntl();
+
+  const options = {
+    date: true,
+    time: true,
+    dateConfig: {
+      // Some configs...
+    },
+    timeConfig: {
+      // Some configs...
+    },
+  };
+  // Default dateTime = "MM/DD/YYYY HH:MM AM"
+  const dateTime = dateTimeFormat(
+    1596860669, // Unix timestamp
+    intl,
+    options
+  );
+
+  // ...
+};
+```
+
+- `dateConfig` - See the [doc](https://formatjs.io/docs/react-intl/api/#formatdate).
+- `timeConfig` - See the [doc](https://formatjs.io/docs/react-intl/api/#formattime).
