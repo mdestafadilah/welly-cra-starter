@@ -7,7 +7,7 @@ import React, {
   useContext,
 } from "react";
 
-interface Fn {
+export interface Fn {
   (cb?: () => void): void;
 }
 

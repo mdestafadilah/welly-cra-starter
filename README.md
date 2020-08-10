@@ -204,16 +204,19 @@ Use the `authFetcher` to post API data. See the [doc](https://swr.vercel.app/doc
 import React from "react";
 
 import useAuthSWR, { authFetcher, mutate } from "../hooks/useAuthSWR";
+import { useAuth } from "../context/auth";
 
 const App = () => {
   const url = "/api/foo";
   const { data } = useAuthSWR(url);
+  const { logout } = useAuth();
 
   const handleSubmit = async () => {
     try {
       const newName = "Welly";
       const config = {
         method: "post",
+        logout, // Pass in the "logout" method to enable auth error handling (401 status)
         data: {
           name: newName,
         },
@@ -236,8 +239,6 @@ const App = () => {
 
 - `url` - API route name.
 - `config` - See the [axios config](https://github.com/axios/axios#request-config).
-
-> ⚠️ The `authFetcher` doesn't support the internal auth error handling, you need to implement it when needed.
 
 ## Utils
 
