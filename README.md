@@ -53,7 +53,7 @@ A React CSR starter for my personal projects along with these [awesome features]
 │   ├── context             // React context (for global states)
 │   ├── hooks               // Custom hooks
 │   ├── utils               // App utility functions
-│   ├── langs               // Language files of react-intl (e.g. en, fr etc.)
+│   ├── langs               // Localization files (e.g. en, fr etc.)
 │   ├── styles              // Global styles (e.g. theme, colors etc.)
 │   ├── types               // Global type definitions
 │   ├── assets              // Static files (e.g. images, fonts etc.)
