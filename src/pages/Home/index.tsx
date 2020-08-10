@@ -15,7 +15,7 @@ interface Data {
 }
 
 const Home = (): JSX.Element => {
-  const { error, data } = useAtuhSWR("/posts123");
+  const { error, data } = useAtuhSWR("/posts");
 
   const renderContent = (): JSX.Element | JSX.Element[] => {
     if (error)
