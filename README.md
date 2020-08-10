@@ -166,9 +166,17 @@ const TopPage = ({ routes }) => (
 
 ## Handling API Data
 
+The `useAuthSWR` hook integrates [swr](https://swr.vercel.app) and [axios](https://github.com/axios/axios) to help you handle API data easily. It built-ins the following features.
+
+- Return an extra API `state` value. Useful for handling view states, e.g. loading, success, error.
+- Includes auth-token.
+- 401 error handling, it will automatically logout user when the token is invalid.
+- Exports the `authFetcher` for API data posting.
+- Keeps the [API](https://swr.vercel.app/docs/options#reach-skip-nav) of swr.
+
 ### Fetching Data
 
-The `useAuthSWR` hook integrates [swr](https://swr.vercel.app) and [axios](https://github.com/axios/axios) to handle the **auth-token** and **auth error handling** for you. Just use it as [normal](https://github.com/vercel/swr#api), it will automatically logout user when the token is invalid.
+Use the `useAuthSWR` hook to fetch API data. See the [doc](https://swr.vercel.app/docs/data-fetching) to learn more.
 
 ```js
 import React from "react";
@@ -176,14 +184,13 @@ import React from "react";
 import useAuthSWR from "../hooks/useAuthSWR";
 
 const App = () => {
-  // It has the same API plus some useful options
-  // If auth-token is invalid, it will redirect user to login page automatically
-  const { data, error } = useAuthSWR("/api/foo", {
-    disableAuthErrorHandling: true, // Disable internal auth error handling, default = false
+  // The state will be: "loading" | "success" | "error"
+  const { state, data } = useAuthSWR("/api/foo", {
+    disableAuthErrorHandling: true, // Disable internal auth error handling (401 status), default = false
   });
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (state === "error") return <div>failed to load</div>;
+  if (state === "loading") return <div>loading...</div>;
 
   return <div>hello {data.name}!</div>;
 };
@@ -191,16 +198,16 @@ const App = () => {
 
 ### Posting Data
 
-The `useAuthSWR` hook also exports the `fetcher` (based on [axios](https://github.com/axios/axios)), which includes the **API entry point** and **auth-token** already.
+Use the `authFetcher` to post API data. See the [doc](https://swr.vercel.app/docs/mutation) to learn more.
 
 ```js
 import React from "react";
 
-import useAuthSWR, { authFetcher } from "../hooks/useAuthSWR";
+import useAuthSWR, { authFetcher, mutate } from "../hooks/useAuthSWR";
 
 const App = () => {
   const url = "/api/foo";
-  const { data, mutate } = useAuthSWR(url);
+  const { data } = useAuthSWR(url);
 
   const handleSubmit = async () => {
     try {
@@ -212,9 +219,12 @@ const App = () => {
         },
       };
 
+      // Update the local data immediately, but disable the revalidation
+      mutate(url, { ...data, name: newName }, false);
+      // Send a request to the API to update the source
       await authFetcher(url, config);
-      // Update the local data immediately and revalidate (refetch)
-      mutate(url, { ...data, name: newName });
+      // Trigger a revalidation (refetch) to make sure our local data is correct
+      mutate(url);
     } catch (error) {
       // Error handling
     }
@@ -225,7 +235,9 @@ const App = () => {
 ```
 
 - `url` - API route name.
-- `config` - The same with [axios config](https://github.com/axios/axios#request-config).
+- `config` - See the [axios config](https://github.com/axios/axios#request-config).
+
+> ⚠️ The `authFetcher` doesn't support the internal auth error handling, you need to implement it when needed.
 
 ## Utils
 

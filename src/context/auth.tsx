@@ -31,7 +31,6 @@ const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
 
     setIsAuthenticated(true);
     setToken("123");
-
     if (cb) cb();
   }, []);
 
@@ -40,7 +39,6 @@ const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
 
     setIsAuthenticated(false);
     removeToken();
-
     if (cb) cb();
   }, []);
 
