@@ -27,10 +27,10 @@ export default ({ onClickIcon }: Props): JSX.Element | null => {
   const history = useHistory();
   const { pathname } = useLocation();
   const { isAuthenticated, logout } = useAuth() as AuthCtxProps;
-  const { name, lang, setLang } = useUser() as UserCtxProps;
+  const { name, locale, setLocale } = useUser() as UserCtxProps;
 
   const handleLangChange = (e: ChangeEvent<{ value: unknown }>): void => {
-    setLang(e.target.value as string);
+    setLocale(e.target.value as string);
   };
 
   const handleLogout = (): void => {
@@ -62,7 +62,7 @@ export default ({ onClickIcon }: Props): JSX.Element | null => {
         </Typography>
         <Select
           css={select}
-          value={lang}
+          value={locale}
           onChange={handleLangChange}
           displayEmpty
         >
