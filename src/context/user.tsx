@@ -28,7 +28,7 @@ const UserProvider = ({ children }: ProviderProps): JSX.Element => {
     config.DEFAULT_LOCALE || savedLocale || browserLocale
   );
 
-  const setLocale = useCallback((val: string) => {
+  const setLocale = useCallback((val) => {
     updateLocale(val);
     localStorage.setItem("locale", val);
   }, []);
