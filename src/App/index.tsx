@@ -8,7 +8,7 @@ import { Routes, routes } from "../routes";
 import { AppBar, Drawer } from "../components";
 
 const App = (): JSX.Element => {
-  const { lang } = useUser() as ContextProps;
+  const { locale } = useUser() as ContextProps;
   const [showDrawer, setShowDrawer] = useState(false);
 
   const toggleDrawer = (val: boolean) => (): void => {
@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
 
   return (
     // @ts-ignore
-    <IntlProvider locale={lang} messages={messages[lang]}>
+    <IntlProvider locale={locale} messages={messages[locale]}>
       <Router>
         <AppBar onClickIcon={toggleDrawer(true)} />
         <Drawer open={showDrawer} onClose={toggleDrawer(false)} />

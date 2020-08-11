@@ -11,8 +11,8 @@ import config from "../config";
 
 export interface ContextProps {
   name: string;
-  lang: string;
-  setLang: (lang: string) => void;
+  locale: string;
+  setLocale: (val: string) => void;
 }
 
 interface ProviderProps {
@@ -22,20 +22,20 @@ interface ProviderProps {
 const UserContext = createContext<Partial<ContextProps>>({});
 
 const UserProvider = ({ children }: ProviderProps): JSX.Element => {
-  const savedLang = localStorage.getItem("lang");
-  const [browserLang] = navigator.language.split("-");
-  const [language, setLanguage] = useState(
-    savedLang || browserLang || config.DEFAULT_LANG
+  const savedLocale = localStorage.getItem("locale");
+  const [browserLocale] = navigator.language.split("-");
+  const [locale, updateLocale] = useState(
+    config.DEFAULT_LOCALE || savedLocale || browserLocale
   );
 
-  const setLang = useCallback((lang: string) => {
-    setLanguage(lang);
-    localStorage.setItem("lang", lang);
+  const setLocale = useCallback((val: string) => {
+    updateLocale(val);
+    localStorage.setItem("locale", val);
   }, []);
 
-  const value = useMemo(() => ({ name: "Welly", lang: language, setLang }), [
-    language,
-    setLang,
+  const value = useMemo(() => ({ name: "Welly", locale, setLocale }), [
+    locale,
+    setLocale,
   ]);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
