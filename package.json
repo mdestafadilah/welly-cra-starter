@@ -43,7 +43,6 @@
           ]
         }
       ],
-      "no-debugger": "warn",
       "@typescript-eslint/ban-ts-ignore": "off"
     }
   },
