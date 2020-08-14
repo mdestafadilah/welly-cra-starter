@@ -27,7 +27,7 @@ const authFetcher: Fetcher = async (
       method,
       url: `${config.API_URL}${url}`,
       headers: { Authorization: `Bearer ${getToken()}`, ...headers },
-      timeout: 30 * 1000,
+      timeout: 10 * 1000,
       ...rest,
     });
 
