@@ -28,7 +28,7 @@ const RouteWithSubRoutes = memo(
             />
           ) : (
             // @ts-ignore
-            <Component {...props} routes={subRoutes} />
+            <Component routes={subRoutes} {...props} />
           )
         }
       />
