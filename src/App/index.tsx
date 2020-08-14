@@ -2,13 +2,13 @@ import React, { useState, memo } from "react";
 import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { useUser, ContextProps } from "../context/user";
+import { useUser } from "../context/user";
 import messages from "../langs";
 import { Routes, routes } from "../routes";
 import { AppBar, Drawer } from "../components";
 
 const App = (): JSX.Element => {
-  const { locale } = useUser() as ContextProps;
+  const { locale } = useUser();
   const [showDrawer, setShowDrawer] = useState(false);
 
   const toggleDrawer = (val: boolean) => (): void => {

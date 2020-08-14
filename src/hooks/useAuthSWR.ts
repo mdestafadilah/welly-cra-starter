@@ -5,7 +5,7 @@ import useSWR, {
   responseInterface as ResponseInterface,
 } from "swr";
 
-import { Fn, ContextProps, getToken, useAuth } from "../context/auth";
+import { Fn, getToken, useAuth } from "../context/auth";
 import config from "../config";
 
 interface FetcherConfig extends AxiosRequestConfig {
@@ -55,7 +55,7 @@ interface HookReturn<T> extends ResponseInterface<T, Error> {
 
 const useAuthSWR = <T = any>(...args: HookArgs): HookReturn<T> => {
   const [state, setState] = useState<HookState>("loading");
-  const { logout } = useAuth() as ContextProps;
+  const { logout } = useAuth();
 
   const [arg1, arg2, arg3] = args;
   const { disableAuthErrorHandling, ...opts } =

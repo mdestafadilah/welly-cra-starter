@@ -11,7 +11,7 @@ export interface Fn {
   (cb?: () => void): void;
 }
 
-export interface ContextProps {
+interface ContextProps {
   isAuthenticated: boolean;
   login: Fn;
   logout: Fn;
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }: ProviderProps): JSX.Element => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-const useAuth = (): Partial<ContextProps> => useContext(AuthContext);
+const useAuth = (): ContextProps => useContext(AuthContext) as ContextProps;
 
 const KEY = "act";
 const getToken = (): string | null => localStorage.getItem(KEY);

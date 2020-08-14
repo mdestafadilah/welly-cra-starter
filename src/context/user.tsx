@@ -9,7 +9,7 @@ import React, {
 
 import config from "../config";
 
-export interface ContextProps {
+interface ContextProps {
   name: string;
   locale: string;
   setLocale: (val: string) => void;
@@ -41,6 +41,6 @@ const UserProvider = ({ children }: ProviderProps): JSX.Element => {
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 
-const useUser = (): Partial<ContextProps> => useContext(UserContext);
+const useUser = (): ContextProps => useContext(UserContext) as ContextProps;
 
 export { UserProvider, useUser };

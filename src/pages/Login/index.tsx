@@ -5,7 +5,7 @@ import { memo } from "react";
 import { useHistory, useLocation, Link, Redirect } from "react-router-dom";
 import { Container, Typography, Button } from "@material-ui/core";
 
-import { useAuth, ContextProps } from "../../context/auth";
+import { useAuth } from "../../context/auth";
 import { container, btn } from "./styles";
 
 interface LocationState {
@@ -17,7 +17,7 @@ interface LocationState {
 const Login = (): JSX.Element => {
   const history = useHistory();
   const location = useLocation<LocationState>();
-  const { isAuthenticated, login } = useAuth() as ContextProps;
+  const { isAuthenticated, login } = useAuth();
 
   const handleLogin = (): void => {
     login(() => {

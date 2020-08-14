@@ -15,8 +15,8 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import { FormattedMessage } from "react-intl";
 
-import { useAuth, ContextProps as AuthCtxProps } from "../../context/auth";
-import { useUser, ContextProps as UserCtxProps } from "../../context/user";
+import { useAuth } from "../../context/auth";
+import { useUser } from "../../context/user";
 import { menuBtn, emoji, title, select } from "./styles";
 
 interface Props {
@@ -26,8 +26,8 @@ interface Props {
 export default ({ onClickIcon }: Props): JSX.Element | null => {
   const history = useHistory();
   const { pathname } = useLocation();
-  const { isAuthenticated, logout } = useAuth() as AuthCtxProps;
-  const { name, locale, setLocale } = useUser() as UserCtxProps;
+  const { isAuthenticated, logout } = useAuth();
+  const { name, locale, setLocale } = useUser();
 
   const handleLangChange = (e: ChangeEvent<{ value: unknown }>): void => {
     setLocale(e.target.value as string);
