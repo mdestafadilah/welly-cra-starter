@@ -23,7 +23,7 @@ const authFetcher: Fetcher = async (
   { method = "get", headers, logout, ...rest } = {}
 ) => {
   try {
-    const { data } = await axios({
+    const res = await axios({
       method,
       url: `${config.API_URL}${url}`,
       headers: { Authorization: `Bearer ${getToken()}`, ...headers },
@@ -31,7 +31,7 @@ const authFetcher: Fetcher = async (
       ...rest,
     });
 
-    return data;
+    return res;
   } catch (error) {
     if (logout && error.response?.status === 401) {
       console.error("> authFetcher: 401 Unauthorized");
