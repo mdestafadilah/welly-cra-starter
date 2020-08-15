@@ -11,9 +11,7 @@ const App = (): JSX.Element => {
   const { locale } = useUser();
   const [showDrawer, setShowDrawer] = useState(false);
 
-  const toggleDrawer = (val: boolean) => (): void => {
-    setShowDrawer(val);
-  };
+  const toggleDrawer = (val: boolean) => (): void => setShowDrawer(val);
 
   return (
     // @ts-ignore
