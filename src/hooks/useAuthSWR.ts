@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import axios, { AxiosRequestConfig, AxiosPromise } from "axios";
 import useSWR, {
   ConfigInterface,
   responseInterface as ResponseInterface,
@@ -12,10 +12,8 @@ interface FetcherConfig extends AxiosRequestConfig {
   logout?: Fn | false;
 }
 
-type FetcherReturn = Promise<AxiosResponse | AxiosError>;
-
 interface Fetcher {
-  (url: string, config?: FetcherConfig): FetcherReturn;
+  <T>(url: string, config?: FetcherConfig): AxiosPromise<T>;
 }
 
 const authFetcher: Fetcher = async (
@@ -38,7 +36,7 @@ const authFetcher: Fetcher = async (
       logout();
     }
 
-    throw new Error(error);
+    throw error;
   }
 };
 
@@ -50,11 +48,13 @@ type HookArgs = [string, (Fetcher | HookOpts)?, HookOpts?];
 
 type HookState = "loading" | "success" | "error";
 
-interface HookReturn<T> extends ResponseInterface<T, Error> {
+interface HookReturn<T, E> extends ResponseInterface<T, E> {
   state: HookState;
 }
 
-const useAuthSWR = <T = any>(...args: HookArgs): HookReturn<T> => {
+const useAuthSWR = <T = any, E = Error>(
+  ...args: HookArgs
+): HookReturn<T, E> => {
   const [state, setState] = useState<HookState>("loading");
   const { logout } = useAuth();
 
@@ -64,11 +64,14 @@ const useAuthSWR = <T = any>(...args: HookArgs): HookReturn<T> => {
   const fetcher =
     typeof arg2 === "function"
       ? arg2
-      : (url: string): FetcherReturn =>
+      : (url: string): AxiosPromise<T> =>
           authFetcher(url, { logout: !disableAuthErrorHandling && logout });
-  const { error, data, ...rest } = useSWR(arg1, fetcher, { ...opts });
+  const { error, data, ...rest } = useSWR<T, E>(arg1, fetcher as any, {
+    ...opts,
+  });
 
   useEffect(() => {
+    setState("loading");
     if (error) setState("error");
     if (data) setState("success");
   }, [error, data]);
