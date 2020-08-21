@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig, AxiosPromise } from "axios";
 import useSWR, {
+  keyInterface,
   ConfigInterface,
   responseInterface as ResponseInterface,
 } from "swr";
@@ -44,7 +45,7 @@ interface HookOpts extends ConfigInterface {
   disableAuthErrorHandling?: boolean;
 }
 
-type HookArgs = [string, (Fetcher | HookOpts)?, HookOpts?];
+type HookArgs = [keyInterface, (Fetcher | HookOpts)?, HookOpts?];
 
 type HookState = "loading" | "success" | "error";
 
