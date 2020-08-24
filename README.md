@@ -1,4 +1,4 @@
-# Welly CRA Starter
+# <em><b>WELLY CRA STARTER</b></em>
 
 A React CSR starter for my personal projects along with these [awesome features](#features).
 
